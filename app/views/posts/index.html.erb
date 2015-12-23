@@ -1,0 +1,27 @@
+<h1 class="page-header">
+  Posts
+  <small>Lista de Posts</small>
+</h1>
+
+<% @posts.each do |p| %>
+    <h2>
+      <%= link_to p.title, p %>
+    </h2>
+    <p class="lead">
+      by <a href="#"><%= p.author %></a>
+    </p>
+    <p><span class="glyphicon glyphicon-time"></span> Posteado el <%= p.created_at %> </p>
+    <p><%= p.summary %></p>
+    <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+    <hr>
+<% end %>
+
+<!-- Pager -->
+<ul class="pager">
+  <li class="previous">
+    <a href="#">&larr; Older</a>
+  </li>
+  <li class="next">
+    <a href="#">Newer &rarr;</a>
+  </li>
+</ul>
