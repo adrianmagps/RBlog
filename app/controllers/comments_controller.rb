@@ -3,7 +3,10 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create!(comment_params)
-    redirect_to @post
+    respond_to do |format|
+        format.html { redirect_to @post }
+        format.js
+    end
   end
 
   private

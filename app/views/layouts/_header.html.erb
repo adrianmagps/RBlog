@@ -1,28 +1,147 @@
-<!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rblog-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "RBlog", root_path, class: 'navbar-brand' %>
+<header>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div id="status">
+      <div class='spinner-wrap'>
+        <div class='leftside'></div>
+        <div class='rightside'></div>
+        <div class='spinner'>
+          <div class='bounce1'></div>
+          <div class='bounce2'></div>
+          <div class='bounce3'></div>
+        </div>
+      </div>
     </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="rblog-navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
   </div>
-  <!-- /.container -->
-</nav>
+
+  <!-- Fixed navbar -->
+
+  <nav class="navbar main-menu navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to root_path, :class => 'navbar-brand', :title => 'RBlog' do %>
+          <img src="/assets/logo.png" alt="RBlog">
+        <% end %>
+      </div>
+      <div class="navbar-collapse collapse pull-left">
+        <ul class="nav navbar-nav menu" id="menu">
+          <li><%= link_to 'Home', root_path %></li>
+
+          <li class="dropdown mega-dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mega Menu 2<span class="caret"></span></a>
+
+            <div class="dropdown-menu">
+              <div class="container">
+                <div class="mega-dropdown-menu">
+                  <div class="col-md-3 col-xs-12 col-sm-6 sub-menu">
+                    <h3>Categories</h3>
+                    <ul class="list-unstyled">
+                      <li><a href="#">Photography </a></li>
+                      <li><a href="#">Travel </a></li>
+                      <li><a href="#">Music </a></li>
+                      <li><a href="#">LifeStyle </a></li>
+                      <li><a href="#">Apps </a></li>
+                      <li><a href="#">Business </a></li>
+                    </ul>
+                  </div>
+
+                  <div class="col-md-3 col-xs-12 col-sm-6 sub-menu">
+                    <h3>Social Menu</h3>
+                    <ul class="list-unstyled">
+                      <li><a href="#"><i class="fa fa-facebook-square"></i> Facebook </a></li>
+                      <li><a href="#"><i class="fa fa-google-plus-square"></i> Google Plus </a></li>
+                      <li><a href="#"><i class="fa fa-twitter-square"></i> Twitter </a></li>
+                      <li><a href="#"><i class="fa fa-pinterest-square"></i> Pinterest </a></li>
+                      <li><a href="#"><i class="fa fa-linkedin-square"></i> Linkedin </a></li>
+                      <li><a href="#"><i class="fa fa-tumblr-square"></i> Tumblr </a></li>
+                    </ul>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 sub-menu hidden-xs">
+                    <h3>Recent Post Menu</h3>
+                    <ul class="list-unstyled">
+                      <li><a href="single.html">Should Be A Large Heading </a></li>
+                      <li><a href="single.html">Match With the Size </a></li>
+                      <li><a href="single.html">The Heading Text Size</a></li>
+                      <li><a href="single.html">Lorem ipsum dolor sit </a></li>
+                      <li><a href="single.html">Should Be A Large Heading </a></li>
+                      <li><a href="single.html">Match With the Image </a></li>
+                    </ul>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 sub-menu  hidden-xs">
+                    <h3>About Us</h3>
+
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lectus congue mi
+                      viverra congue in sed leo.
+                    </p>
+                    <br/>
+
+                    <ul class="list-inline store-icon">
+                      <li><a href="#"><i class="fa fa-android"></i> Google Play</a></li>
+                      <li><a href="#"><i class="fa fa-apple"></i> Apple Store</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right menu social-icons">
+        <li class="dropdown mega-dropdown search">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-search"></i></a>
+
+          <div class="dropdown-menu">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 pull-right">
+                  <div class="mega-dropdown-menu">
+                    <form class="search-form" action="http://www.mirchu.net/themes/BlogDesk/search.php">
+                      <div class="form-group">
+                        <div class="col-lg-12">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                              </span>
+                          </div><!-- /input-group -->
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!--<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+        <!--<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+        <!--<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+        <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Wellcome !<%= current_user.name %> <i class="fa fa-user"></i></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+                </ul>
+            </li>
+        <% else %>
+          <li><%= link_to sign_in_url do %><i class="fa fa-user"></i><% end %></li>
+        <% end %>
+      </ul>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+</header>

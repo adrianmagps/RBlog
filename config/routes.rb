@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+
+  get 'tags/index'
+
+  devise_for :users
+  devise_scope :user do
+    get 'sign_in', to: 'devise/sessions#new'
+  end
+  scope '/admin' do
+    resources :users
+    resources :roles
+    resources :categories
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -10,6 +23,10 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+  get 'posts/category/:id' => 'posts#by_category'
+  get 'posts/tag/:id' => 'posts#by_tag'
+  get 'posts/archives' => 'posts#archives'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :posts do

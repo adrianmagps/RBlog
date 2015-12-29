@@ -34,6 +34,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sprockets-rails'
 gem 'bootstrap-sass'
+gem 'devise', '~> 3.5.2'
+gem 'cancancan'
 
 
 group :development, :test do
@@ -42,6 +44,8 @@ group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  gem 'rails_layout'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -10,49 +10,108 @@
 
   <title>RBlog</title>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
+  <%= auto_discovery_link_tag(:atom, post_path(:atom)) %>
 </head>
 
 <body>
 
 <%= render 'layouts/header' %>
 
-<!-- Page Content -->
-<div class="container">
+<% if current_page?('/') %>
+    <section id="feature-posts-2" class="section">
 
-  <div class="row">
+      <div class="container">
+        <div class="row feature-item">
+          <div class="col-sm-8 col-md-8 feature-items">
+            <article class="col-md-12 col-sm-12 nopadding">
+              <a href="single-2.html" class="thumbnail">
+                <img src="assets/images/feature-posts/feature-post9.jpg" alt="Canan Digital Photography">
+              </a>
 
-    <!-- Blog Entries Column -->
-    <div class="col-md-8">
+              <div class="feature-text">
+                <h3><a href="single-2.html" title="Canan Digital Photography">Canan Digital Photography</a></h3>
 
-      <%= yield %>
+                <p>Photography</p>
+              </div>
+            </article>
 
+          </div>
 
+          <div class="col-sm-4 col-md-4 feature-items">
+            <article class="col-md-12 col-sm-12 nopadding">
+              <a href="single-2.html" class="thumbnail">
+                <img src="assets/images/feature-posts/feature-post5.png" alt="Travel The World">
+              </a>
 
-    </div>
+              <div class="feature-text">
+                <h3><a href="single-2.html" title="Travel The World">Travel The World</a></h3>
 
-    <!-- Blog Sidebar Widgets Column -->
-    <div class="col-md-4">
-      <% if ENV['USE_SEARCH'] == 'Y' %>
-          <%= render 'layouts/searchWidget' %>
-      <% end %>
+                <p>Travel</p>
+              </div>
+            </article>
+          </div>
 
-      <%= render 'layouts/tagsWidget' %>
+          <div class="col-sm-4 col-md-4 feature-items">
+            <article class="col-md-12 col-sm-12 nopadding">
+              <a href="single-2.html" class="thumbnail">
+                <img src="assets/images/feature-posts/feature-post6.png" alt="Google Play Music">
+              </a>
 
-    </div>
+              <div class="feature-text">
+                <h3><a href="single-2.html" title="Google play Music">Google Play Music</a></h3>
 
+                <p>Music</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-4 col-md-4 feature-items">
+            <article class="col-md-12 col-sm-12 nopadding">
+              <a href="single-2.html" class="thumbnail">
+                <img src="assets/images/feature-posts/feature-post8.png" alt="Best Mobile Apps">
+              </a>
+
+              <div class="feature-text">
+                <h3><a href="single-2.html" title="Best Mobile Apps">Best Mobile Apps</a></h3>
+
+                <p>apps</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-sm-4 col-md-4 feature-items">
+            <article class="col-md-12 col-sm-12 nopadding">
+              <a href="single-2.html" class="thumbnail">
+                <img src="assets/images/feature-posts/feature-post3.png" alt="gallery">
+              </a>
+
+              <div class="feature-text">
+                <h3><a href="single-2.html" title="Canan Digital Photography">Digital LifeStyle</a></h3>
+
+                <p>LifeStyle</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+    </section>
+<% end %>
+
+<section class="content">
+  <div class="container">
+    <!--<p class="notice"><%= notice %></p>-->
+    <!--<p class="alert"><%= alert %></p>-->
+
+    <%= yield %>
   </div>
-  <!-- /.row -->
-
-  <hr>
+</section>
 
 <%= render 'layouts/footer' %>
-
-</div>
-<!-- /.container -->
+<a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 
 </body>
 </html>

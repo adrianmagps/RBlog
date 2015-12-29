@@ -1,5 +1,5 @@
 class CreateComments < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :comments do |t|
       t.string :name
       t.string :email
@@ -11,5 +11,9 @@ class CreateComments < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :comments, :posts
+  end
+
+  def self.down
+    drop_table :comments
   end
 end
