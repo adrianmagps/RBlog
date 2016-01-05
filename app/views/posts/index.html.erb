@@ -74,44 +74,25 @@
       <div class="col-sm-6 col-md-12 col-lg-12">
         <div class="panel panel-default theme-panel">
           <div class="panel-heading">Recent Articles</div>
-          <div class="panel-body nopadding">
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img src="assets/images/post/rp1.jpg" alt="author"/>
-                </a>
+          <div id="recents-list" class="panel-body nopadding">
+            <% @recents.each do |r|  %>
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img src="assets/comment-thumbnail.png" alt="author"/>
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading"><a href="#"><%= r.title %></a></h4>
+                  <p>
+                    <% if r.categories.count > 0 %>
+                        <%= link_to r.categories[0].name, posts_category_path(r.categories[0]) %> &bull;
+                    <% end %>
+                    <%= time_ago_in_words(r.created_at) %> ago
+                  </p>
+                </div>
               </div>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="#">this is long Blog Heading Text Size for recent articles</a>
-                </h4>
-
-                <p><a href="#">LifeStyle</a> &bull; 5 hours ago</p>
-              </div>
-            </div>
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img src="assets/images/post/rp2.jpg" alt="author"/>
-                </a>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="#">this is Blog Heading Text Size</a></h4>
-
-                <p><a href="#">Photography</a> &bull; 3 hours ago</p>
-              </div>
-            </div>
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img src="assets/images/post/rp3.jpg" alt="author"/>
-                </a>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="#">this is Blog Heading Text Size</a></h4>
-
-                <p><a href="#">Products</a> &bull; 2 hours ago</p>
-              </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -128,9 +109,9 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <article class="post">
-          <div class="post-type post-img">
-            <a href="#"><img src="assets/images/post/post-1.jpg" class="img-responsive" alt="image post"/></a>
-          </div>
+          <!--<div class="post-type post-img">-->
+            <!--<a href="#"><img src="assets/images/post/post-1.jpg" class="img-responsive" alt="image post"/></a>-->
+          <!--</div>-->
           <div class="author-info author-info-2">
             <ul class="list-inline">
               <li>
@@ -161,9 +142,9 @@
 
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <article class="post">
-          <div class="post-type post-img">
-            <a href="#"><img src="assets/images/post/post-2.jpg" class="img-responsive" alt="image post"/></a>
-          </div>
+          <!--<div class="post-type post-img">-->
+            <!--<a href="#"><img src="assets/images/post/post-2.jpg" class="img-responsive" alt="image post"/></a>-->
+          <!--</div>-->
           <div class="author-info author-info-2">
             <ul class="list-inline">
               <li>
@@ -225,9 +206,9 @@
     <article class="post vt-post">
       <div class="row">
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
-          <div class="post-type post-img">
-            <a href="#"><img src="assets/images/post/m1.jpg" class="img-responsive" alt="image post"/></a>
-          </div>
+          <!--<div class="post-type post-img">-->
+            <!--<a href="#"><img src="assets/images/post/m1.jpg" class="img-responsive" alt="image post"/></a>-->
+          <!--</div>-->
           <div class="author-info author-info-2">
             <ul class="list-inline">
               <li>

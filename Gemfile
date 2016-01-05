@@ -34,9 +34,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sprockets-rails'
 gem 'bootstrap-sass'
+
+gem 'carrierwave'
+gem 'tinymce-rails', '~> 4.3.2'
+
 gem 'devise', '~> 3.5.2'
 gem 'cancancan'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

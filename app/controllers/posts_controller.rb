@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :update_visits_count, only: [:show]
   def index
     @posts = Post.all.order(created_at: :desc)
+    @recents = @posts.limit(3)
     @most_new = @posts.first
 
     respond_to do |format|
@@ -10,6 +11,22 @@ class PostsController < ApplicationController
       format.json { render json: @posts }
       format.atom
     end
+  end
+
+  def new
+    authorize! :create, Post
+    @post = Post.new
+    @categories = Category.all
+    @tags = Tag.all
+  end
+
+  def create
+    authorize! :create, Post
+    @post = Post.create(post_params)
+    @post.summary = @post.content[0..100]
+    @post.user = current_user
+    render json: @post
+    #redirect_to
   end
 
   def show
@@ -25,6 +42,11 @@ class PostsController < ApplicationController
     render json: @archives
   end
 
+  def recents
+    @posts = Post.all.order(created_at: :desc).limit(3)
+    render json: @posts, include: :categories
+  end
+
   def by_tag
     @tags = Tag.find(params[:id])
     render json: @tags, include: :posts
@@ -38,5 +60,10 @@ class PostsController < ApplicationController
     def update_visits_count
       @post.visits = @post.visits += 1
       @post.save
+    end
+
+    def post_params
+      params[:user] = current_user
+      params.require(:post).permit(:title, :content, :visible, :user)
     end
 end

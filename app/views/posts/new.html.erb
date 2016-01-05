@@ -1,0 +1,35 @@
+<h1 class="page-header">Post</h1>
+
+<h3 class="section-title">Create Post</h3>
+<%= form_for(@post, html: {role: 'form', class: 'form-horizontal'}) do |f| %>
+    <div class="form-group">
+
+      <div class="col-sm-10 col-xs-8">
+        <%= f.label :title, 'Title', :class => 'label-control' %>
+        <%= f.text_field :title, {class: 'form-control', placeholder: 'Title'} %>
+      </div>
+
+      <div class="col-sm-10 col-xs-8">
+        <%= f.label 'Categories', :class => 'label-control' %>
+        <%= f.check_box @categories, :class => 'form-control' %>
+      </div>
+
+      <!--<div class="col-sm-10 col-xs-8">-->
+        <!--<%= f.label @tags, 'Tags', :class => 'label-control' %>-->
+        <!--<%= f.check_box @tags, :class => 'form-control' %>-->
+      <!--</div>-->
+
+      <div class="col-sm-10 col-xs-8">
+        <%= f.check_box :visible %>
+        <%= f.label :visible, 'Active?' %>
+      </div>
+
+      <div class="col-sm-10 col-xs-8">
+        <%= f.label :content, 'Body', :class => 'label-control' %>
+        <%= f.text_area :content, :class => 'form-control tinymce', :rows => 40 %>
+      </div>
+    </div>
+    <%= f.submit 'Create', class: 'btn btn-default btn-lg' %>
+<% end %>
+
+<%= tinymce %>

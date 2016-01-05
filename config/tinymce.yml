@@ -1,0 +1,22 @@
+theme_simple_toolbar_location: top
+theme_simple_toolbar_align: left
+theme_simple_statusbar_location: bottom
+plugins:
+- advlist
+- hr
+- link
+- autoresize
+- contextmenu
+- insertdatetime
+- layer
+- media
+- pagebreak
+- autolink
+- lists
+- print
+- preview
+- searchreplace
+- visualblocks
+- visualchars
+- wordcount
+- fullscreen
