@@ -83,7 +83,7 @@
                   </a>
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><a href="#"><%= r.title %></a></h4>
+                  <h4 class="media-heading"><%= link_to r.title, r %></h4>
                   <p>
                     <% if r.categories.count > 0 %>
                         <%= link_to r.categories[0].name, posts_category_path(r.categories[0]) %> &bull;

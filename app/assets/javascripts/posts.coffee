@@ -6,16 +6,13 @@ $( ->
     d = new Date(date)
     return "#{MONTH_NAMES[d.getMonth()]} #{d.getFullYear()}"
 
-  howManyTime = (date) ->
-    return ''
-
   $.getJSON(
     '/admin/categories.json',
     (data) ->
       $('#categories-loading').remove()
       list = $('#categories-list')
       $.each data, (i, el) ->
-        list.append("<a class=\"list-group-item\" href=\"/posts/category/#{el.id}\">#{el.name}</a>")
+        list.append("<a id=\"category_#{el.name}_#{el.id}\" class=\"list-group-item\" href=\"/posts/category/#{el.id}\">#{el.name}</a>")
   )
 
   $.getJSON(
@@ -40,24 +37,4 @@ $( ->
         list.append("<a href=\"#\" class=\"list-group-item\">#{formatDate(i)} (#{el})</a>")
   )
 
-#  $.getJSON(
-#    '/posts/recents.json',
-#    (data) ->
-#      $('#recents-loading').remove()
-#      list = $('#recents-list')
-#      $.each data, (i, el) ->
-#        cat = if el.categories.length > 0 then el.categories[0] else { id: '0', name: 'General' }
-#        template = "<div class=\"media\">
-#                      <div class=\"media-left\">
-#                        <a href=\"#\">
-#                          <img src=\"assets/comment-thumbnail.png\" alt=\"author\"/>
-#                        </a>
-#                      </div>
-#                      <div class=\"media-body\">
-#                        <h4 class=\"media-heading\"><a href=\"#\">#{el.title}</a></h4>
-#                        <p><a href=\"/posts/category/#{cat.id}\">#{cat.name}</a> &bull; #{howManyTime(el.created_at)}</p>
-#                      </div>
-#                    </div>"
-#        list.append(template)
-#  )
 )

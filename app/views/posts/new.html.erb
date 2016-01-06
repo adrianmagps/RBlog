@@ -2,34 +2,62 @@
 
 <h3 class="section-title">Create Post</h3>
 <%= form_for(@post, html: {role: 'form', class: 'form-horizontal'}) do |f| %>
+    <% if @post.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@post.errors.count, 'error') %> prohibited
+            this post from being saved:
+          </h2>
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
     <div class="form-group">
+      <%= f.label :title, 'Title', :class => 'label-control' %>
+      <%= f.text_field :title, {class: 'form-control', placeholder: 'Title'} %>
+    </div>
+    <div class="form-group">
+      <%= label_tag 'categories[]', 'Categories', :class => 'label-control' %>
+      <%= select_tag('categories[]', options_for_select(@categories.collect { |c| [c.name, c.id]}),{:multiple => 'multiple',:id => 'categories', :class => 'form-control'})  %>
+    </div>
+    <div class="form-group">
+      <%= label_tag 'tags[]', 'Tags', :class => 'label-control' %>
+      <%= select_tag('tags[]', options_for_select(@tags.collect { |t| [t.name, t.id]}),{:multiple => 'multiple',:id => 'tags', :class => 'form-control'})  %>
+    </div>
 
-      <div class="col-sm-10 col-xs-8">
-        <%= f.label :title, 'Title', :class => 'label-control' %>
-        <%= f.text_field :title, {class: 'form-control', placeholder: 'Title'} %>
-      </div>
-
-      <div class="col-sm-10 col-xs-8">
-        <%= f.label 'Categories', :class => 'label-control' %>
-        <%= f.check_box @categories, :class => 'form-control' %>
-      </div>
-
-      <!--<div class="col-sm-10 col-xs-8">-->
-        <!--<%= f.label @tags, 'Tags', :class => 'label-control' %>-->
-        <!--<%= f.check_box @tags, :class => 'form-control' %>-->
-      <!--</div>-->
-
-      <div class="col-sm-10 col-xs-8">
-        <%= f.check_box :visible %>
-        <%= f.label :visible, 'Active?' %>
-      </div>
-
-      <div class="col-sm-10 col-xs-8">
-        <%= f.label :content, 'Body', :class => 'label-control' %>
-        <%= f.text_area :content, :class => 'form-control tinymce', :rows => 40 %>
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+            <%= f.check_box :visible %> <b>Visible?</b>
+        </label>
       </div>
     </div>
+
+    <div class="form-group">
+      <%= f.label :content, 'Body', :class => 'label-control' %>
+      <%= f.text_area :content, :class => 'form-control tinymce', :rows => 40 %>
+    </div>
+
     <%= f.submit 'Create', class: 'btn btn-default btn-lg' %>
 <% end %>
 
 <%= tinymce %>
+
+<script type="application/javascript">
+  function initPage(){
+    $('#categories').select2({
+      theme: "bootstrap"
+    });
+    $('#tags').select2({
+      theme: "bootstrap"
+    });
+  }
+
+  $(function () {
+    initPage();
+  });
+</script>

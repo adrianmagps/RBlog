@@ -9,4 +9,6 @@ class Post < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :tags
 
+  validates_presence_of :categories
+  validates_presence_of :tags
 end

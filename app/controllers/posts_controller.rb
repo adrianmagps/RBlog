@@ -15,18 +15,29 @@ class PostsController < ApplicationController
 
   def new
     authorize! :create, Post
+
     @post = Post.new
-    @categories = Category.all
-    @tags = Tag.all
+    @categories = Category.all.only(:id, :name)
+    @tags = Tag.all.only(:id, :name)
   end
 
   def create
     authorize! :create, Post
+
     @post = Post.create(post_params)
     @post.summary = @post.content[0..100]
     @post.user = current_user
-    render json: @post
-    #redirect_to
+    @post.categories << Category.find(params[:categories]) unless params[:categories].nil?
+    @post.tags << Tag.find(params[:tags]) unless params[:categories].nil?
+
+    if @post.save
+      flash[:notice] = 'Create post successful'
+      redirect_to @post
+    else
+      @categories = Category.all.only(:id, :name)
+      @tags = Tag.all.only(:id, :name)
+      render 'new'
+    end
   end
 
   def show
@@ -63,7 +74,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params[:user] = current_user
-      params.require(:post).permit(:title, :content, :visible, :user)
+      params.require(:post).permit(:title, :content, :visible)
     end
 end
