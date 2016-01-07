@@ -1,0 +1,63 @@
+<h1 class="page-header">Post</h1>
+
+<h3 class="section-title">Edit Post</h3>
+<%= form_for(@post, html: {role: 'form', class: 'form-horizontal'}) do |f| %>
+    <% if @post.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@post.errors.count, 'error') %> prohibited
+            this post from being saved:
+          </h2>
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :title, 'Title', :class => 'label-control' %>
+      <%= f.text_field :title, {class: 'form-control', placeholder: 'Title'} %>
+    </div>
+    <div class="form-group">
+      <%= label_tag 'categories[]', 'Categories', :class => 'label-control' %>
+      <%= select_tag('categories[]', options_for_select(@categories.collect { |c| [c.name, c.id]}, @post.categories.collect { |c| c.id }),{:multiple => 'multiple',:id => 'categories', :class => 'form-control'})  %>
+    </div>
+    <div class="form-group">
+      <%= label_tag 'tags[]', 'Tags', :class => 'label-control' %>
+      <%= select_tag('tags[]', options_for_select(@tags.collect { |t| [t.name, t.id]}, @post.tags.collect { |t| t.id }),{:multiple => 'multiple',:id => 'tags', :class => 'form-control'})  %>
+    </div>
+
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :visible %> <b>Visible?</b>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :content, 'Body', :class => 'label-control' %>
+      <%= f.text_area :content, :class => 'form-control tinymce', :rows => 40 %>
+    </div>
+
+    <%= f.submit 'Update', class: 'btn btn-default btn-lg hide' %>
+<% end %>
+
+<%= tinymce %>
+
+<script type="application/javascript">
+  function initPage(){
+    $('#categories').select2({
+      theme: "bootstrap"
+    });
+    $('#tags').select2({
+      theme: "bootstrap"
+    });
+  }
+
+  $(function () {
+    initPage();
+  });
+</script>

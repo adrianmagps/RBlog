@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   scope '/posts' do
     get 'category/:id' => 'posts#by_category', :as => :posts_category
     get 'tag/:id' => 'posts#by_tag', :as => :posts_tag
+    get 'date/:year/:month' => 'posts#by_date', :as => :posts_date
     get 'archives' => 'posts#archives'
     get 'recents' => 'posts#recents'
   end

@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: [:show, :edit]
+  before_action :set_categ_tags, only: [:edit, :new]
+  before_action :set_widgets, only: [:index, :by_category, :by_date, :by_tag]
   before_action :update_visits_count, only: [:show]
+
   def index
     @posts = Post.all.order(created_at: :desc)
-    @recents = @posts.limit(3)
     @most_new = @posts.first
 
     respond_to do |format|
@@ -15,17 +17,14 @@ class PostsController < ApplicationController
 
   def new
     authorize! :create, Post
-
     @post = Post.new
-    @categories = Category.all.only(:id, :name)
-    @tags = Tag.all.only(:id, :name)
   end
 
   def create
     authorize! :create, Post
 
     @post = Post.create(post_params)
-    @post.summary = @post.content[0..100]
+    @post.summary = Nokogiri::HTML.parse(@post.content).css('p').first.text
     @post.user = current_user
     @post.categories << Category.find(params[:categories]) unless params[:categories].nil?
     @post.tags << Tag.find(params[:tags]) unless params[:categories].nil?
@@ -36,36 +35,64 @@ class PostsController < ApplicationController
     else
       @categories = Category.all.only(:id, :name)
       @tags = Tag.all.only(:id, :name)
-      render 'new'
+      render :new
     end
   end
 
   def show
   end
 
+  def edit
+  end
+
+  def update
+    render json: params
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy!
+    redirect_to posts_path
+  end
+
   def by_category
-    @cat = Category.find(params[:id])
-    render json: @cat, include: :posts
-  end
-
-  def archives
-    @archives = Post.group('DATE(created_at)').count
-    render json: @archives
-  end
-
-  def recents
-    @posts = Post.all.order(created_at: :desc).limit(3)
-    render json: @posts, include: :categories
+    @posts = Category.find(params[:id]).posts
+    render 'by'
   end
 
   def by_tag
-    @tags = Tag.find(params[:id])
-    render json: @tags, include: :posts
+    @posts = Tag.find(params[:id]).posts
+    render 'by'
   end
+
+  def by_date
+    @posts = Post.where("DATE_PART('month', created_at) = ? and DATE_PART('year',created_at) = ?", params[:month], params[:year])
+    render 'by'
+  end
+
+  def archives
+    @posts = Post.all.select(:id, :created_at).order(created_at: :desc)
+    @post_months = @posts.group_by { |t| t.created_at.beginning_of_month.to_date  }
+    render json: @post_months
+  end
+
+  # def recents
+  #   @posts = Post.all.order(created_at: :desc).limit(3)
+  #   render json: @posts, include: :categories
+  # end
 
   private
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def set_categ_tags
+     @categories = Category.all.only(:id, :name)
+     @tags = Tag.all.only(:id, :name)
+    end
+
+    def set_widgets
+      @recents = Post.all.order(created_at: :desc).limit(3)
     end
 
     def update_visits_count

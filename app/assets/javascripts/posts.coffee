@@ -3,8 +3,16 @@ $( ->
   MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
   formatDate = (date) ->
-    d = new Date(date)
-    return "#{MONTH_NAMES[d.getMonth()]} #{d.getFullYear()}"
+    return "#{MONTH_NAMES[getMonth(date)-1]} #{getYear(date)}"
+
+  getDate = (val) ->
+    return val.split('-')
+
+  getYear = (date) ->
+    return getDate(date)[0]
+
+  getMonth = (date) ->
+    return parseInt(getDate(date)[1])
 
   $.getJSON(
     '/admin/categories.json',
@@ -34,7 +42,7 @@ $( ->
       $('#archives-loading').remove()
       list = $('#archives-list')
       $.each data, (i, el) ->
-        list.append("<a href=\"#\" class=\"list-group-item\">#{formatDate(i)} (#{el})</a>")
+        list.append("<a href=\"/posts/date/#{getYear(i)}/#{getMonth(i)}\" class=\"list-group-item\">#{formatDate(i)} (#{el.length})</a>")
   )
 
 )

@@ -1,0 +1,42 @@
+<h2 class="heading">By Category</h2>
+<div class="col-md-8 col-lg-8">
+<% unless @posts.nil? %>
+  <% @posts.each do |p| %>
+      <article class="post vt-post">
+        <div class="row">
+          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
+            <!--<div class="post-type post-img">-->
+            <!--<a href="#"><img alt="image post" class="img-responsive" src="assets/images/post/m1.jpg"></a>-->
+            <!--</div>-->
+            <div class="author-info author-info-2">
+              <ul class="list-inline">
+                <li>
+                  <div class="info">
+                    <p>Posted on:</p>
+                    <strong><%= p.created_at.to_date.to_formatted_s :long %></strong></div>
+                </li>
+
+                <li>
+                  <div class="info">
+                    <p>Comments:</p>
+                    <strong> <%= p.comments.count %> </strong></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+            <div class="caption">
+              <h3 class="md-heading"><%= link_to p.title, p %></h3>
+              <p><%= p.summary.html_safe %></p>
+              <%= link_to 'Read More', p, :role => 'button', :class => 'btn btn-default' %>
+            </div>
+          </div>
+        </div>
+      </article>
+  <% end %>
+<% end %>
+</div>
+
+<% content_for :aside do %>
+    <%= render 'layouts/sidebarWidget' %>
+<% end %>

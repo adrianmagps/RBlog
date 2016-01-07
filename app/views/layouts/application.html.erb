@@ -104,21 +104,33 @@
 <section class="content">
   <div class="container">
     <% unless alert.nil? %>
-      <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <%= alert %>
       </div>
     <% end %>
     <% unless notice.nil? %>
-      <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <%= notice %>
       </div>
     <% end %>
-    <!--<p class="notice"></p>-->
-    <!--<p class="alert"></p>-->
 
-    <%= yield %>
+    <div class="row">
+
+
+      <!--<div class="col-md-8 col-lg-8">-->
+        <%= yield %>
+      <!--</div>-->
+
+      <% if content_for?(:aside) %>
+          <%= yield :aside %>
+      <% end %>
+    </div>
   </div>
 </section>
 
