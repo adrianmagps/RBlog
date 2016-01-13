@@ -37,6 +37,7 @@ gem 'sprockets-rails'
 gem 'bootstrap-sass'
 gem 'select2-rails'
 gem 'will_paginate-bootstrap'
+gem 'react-rails'
 
 gem 'carrierwave'
 gem 'tinymce-rails', '~> 4.3.2'

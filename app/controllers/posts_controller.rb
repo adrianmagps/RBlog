@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     @post.summary = Nokogiri::HTML.parse(@post.content).css('p').first.text
     @post.user = current_user
     @post.categories << Category.find(params[:categories]) unless params[:categories].nil?
-    @post.tags << Tag.find(params[:tags]) unless params[:categories].nil?
+    @post.tags << Tag.find(params[:tags]) unless params[:tags].nil?
 
     if @post.save
       flash[:notice] = 'Create post successful'

@@ -1,2 +1,6 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1 class="page-header">Users</h1>
+<% if can? :create, User %>
+    <%= react_component 'UserForm', { roles: @roles } %>
+<% end %>
+
+<%= react_component 'Users', { data: @users, roles: @roles } %>

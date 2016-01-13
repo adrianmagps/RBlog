@@ -12,10 +12,16 @@
 //
 //= require jquery.min.js
 //= require jquery_ujs
+
+//= require react
+//= require react_ujs
+//= require components
+
 //= require bootstrap-sprockets
 //= require bootstrap.min
 //= require tinymce
 //= require select2
 //= require app
 //= require posts
+
 
