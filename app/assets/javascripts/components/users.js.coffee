@@ -6,9 +6,8 @@
     users: []
     roles: []
   render: ->
-    React.DOM.div null
-      React.createElement UserForm, handleNewRecord: @addRecord
-      React.DOM.hr null
+    React.DOM.div
+      style: {marginTop: 10 + 'px'}
       React.DOM.table
         className: 'table table-bordered'
         React.DOM.thead null,
@@ -31,12 +30,6 @@
   handleChange: (e) ->
     name = e.target.name
     @setState "#{ name }": e.target.value
-  handleSubmit: (e) ->
-    e.preventDefault()
-    $.post '', { record: @state }, (data) =>
-      @props.handleNewRecord data
-      @setState @getInitialState(),
-    'JSON'
   valid: ->
     @state.email && @state.password && @state.name && (@state.password == @state.password_confirmation)
   render: ->
@@ -45,7 +38,6 @@
       'Create User'
     React.DOM.form
       className: 'form-inline'
-      onSubmit: @handleSubmit
       React.DOM.div
         className: 'form-group'
         React.DOM.input

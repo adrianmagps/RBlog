@@ -16,6 +16,7 @@
 
 @RoleSelect = React.createClass
   render: ->
+    options = []
     for r in @props.roles
       options.push "<option value=#{r.id}>#{r.name}</option>"
     React.createElement 'select', null, options
