@@ -22,6 +22,5 @@
 //= require tinymce
 //= require select2
 //= require app
-//= require posts
 
 

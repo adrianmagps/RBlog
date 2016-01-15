@@ -7,15 +7,15 @@ class UsersController < ApplicationController
   end
 
   def create
+    authorize! :create, User
+
     @user = User.new(user_params)
 
-    render json: @user
-
-    # if @user.save
-    #   render json: @user
-    # else
-    #   render json: @user.errors, status: :unprocessable_entity
-    # end
+    if @user.save
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   private

@@ -11,9 +11,9 @@ class Ability
           when 'admin'
             can :manage, :all
           when 'editor'
-            can :manage, Post, :user_id => u.id
+            can :manage, Post, :user_id => user.id
             cannot [:destroy, :update], Post do |post|
-              not post.user_id == u.id
+              not post.user_id == user.id
             end
           when 'reviewer','subscriber'
             can :read, Post

@@ -1,6 +1,1 @@
-<h1 class="page-header">Users</h1>
-<% if can? :create, User %>
-    <%= react_component 'UserForm', { roles: @roles } %>
-<% end %>
-
-<%= react_component 'Users', { data: @users, roles: @roles } %>
+<%= react_component 'Users', { data: @users, roles: @roles, url: users_path, token: { name: request_forgery_protection_token.to_s, value: form_authenticity_token } } %>

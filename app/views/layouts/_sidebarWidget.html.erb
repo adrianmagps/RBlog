@@ -1,40 +1,42 @@
 <aside class="col-md-4 col-lg-4">
   <div class="row">
-    <div class="col-sm-6 col-md-12 col-lg-12">
-      <div class="panel panel-default theme-panel">
-        <div class="panel-heading">Recent Articles</div>
-        <div id="recents-list" class="panel-body nopadding">
-          <% @recents.each do |r| %>
-              <div class="media">
-                <div class="media-left">
-                  <a href="#">
-                    <img src="assets/comment-thumbnail.png" alt="author"/>
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading"><%= link_to r.title, r %></h4>
+    <!--<div class="col-sm-6 col-md-12 col-lg-12">-->
+      <!--<div class="panel panel-default theme-panel">-->
+        <!--<div class="panel-heading">Recent Articles</div>-->
+        <!--<div id="recents-list" class="panel-body nopadding">-->
+          <!--<% @recents.each do |r| %>-->
+              <!--<div class="media">-->
+                <!--<div class="media-left">-->
+                  <!--<a href="#">-->
+                    <!--<img src="assets/comment-thumbnail.png" alt="author"/>-->
+                  <!--</a>-->
+                <!--</div>-->
+                <!--<div class="media-body">-->
+                  <!--<h4 class="media-heading"><%= link_to r.title, r %></h4>-->
 
-                  <p>
-                    <% if r.categories.count > 0 %>
-                        <%= link_to r.categories[0].name, posts_category_path(r.categories[0]) %> &bull;
-                    <% end %>
-                    <%= time_ago_in_words(r.created_at) %> ago
-                  </p>
-                </div>
-              </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+                  <!--<p>-->
+                    <!--<% if r.categories.count > 0 %>-->
+            <!--<%= link_to r.categories[0].name, posts_category_path(r.categories[0]) %> &bull; -->
+                    <!--<% end %>-->
+        <!--  <%= time_ago_in_words(r.created_at) %> ago -->
+                  <!--</p>-->
+                <!--</div>-->
+              <!--</div>-->
+          <!--<% end %>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <%= render 'layouts/categoriesWidget' %>
+    <%= react_component 'RecentsWidget', { articles: @recents } %>
+
+    <%= react_component 'CategoriesWidget', { url: categories_path } %>
 
     <%= render 'layouts/searchWidget' %>
 
-    <%= render 'layouts/archivesWidget' %>
+    <%= react_component 'ArchivesWidget', { url: archives_path } %>
 
     <%= render 'layouts/subscribeWidget' %>
 
-    <%= render 'layouts/tagsWidget' %>
+    <%= react_component 'TagsWidget', { url: tags_index_path } %>
   </div>
 </aside>
