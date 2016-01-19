@@ -53,6 +53,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   gem 'rails_layout'
+  gem 'better_errors'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
